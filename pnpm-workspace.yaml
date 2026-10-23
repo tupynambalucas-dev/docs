@@ -27,6 +27,7 @@ allowBuilds:
   "core-js": true
   "esbuild": true
   "unrs-resolver": true
+  "workerd": true
 
 catalog:
   "@types/node": ^26.6.2
@@ -38,6 +39,7 @@ catalog:
   "@types/unist": ^3.0.3
   "unified": ^11.0.5
   "@docusaurus/faster": ^3.10.2
+  "wrangler": ^4.140.0
 
 catalogs:
   tooling-stack:
