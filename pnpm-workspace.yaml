@@ -21,9 +21,6 @@ packages:
   - "collections"
   - "packages/*"
   - "apps/*"
-  - "knowledge-base/collections"
-  - "knowledge-base/packages/*"
-  - "knowledge-base/apps/*"
 
 allowBuilds:
   "@swc/core": true
