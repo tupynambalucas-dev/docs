@@ -1,0 +1,15 @@
+base_path: .
+preserve_hierarchy: true
+pull_request_title: "chore(l10n): synchronize translations"
+pull_request_labels:
+  - "l10n"
+  - "documentation"
+commit_message: "chore(l10n): update translations [ci skip]"
+files:
+  - source: /collections/docs/**/*.mdx
+    translation: /collections/locales/%locale%/docs/**/%original_file_name%
+  - source: /collections/blogs/**/*.mdx
+    translation: /collections/locales/%locale%/blogs/**/%original_file_name%
+  - source: /collections/locales/messages-portal/**/*.json
+    translation: /collections/locales/%locale%/messages-portal/**/%original_file_name%
+    type: chrome

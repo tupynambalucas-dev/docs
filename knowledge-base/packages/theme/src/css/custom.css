@@ -1,0 +1,124 @@
+@import 'tailwindcss/theme' layer(theme);
+@import 'tailwindcss/utilities' layer(utilities);
+
+@source "../../../apps/**/*.{js,jsx,ts,tsx,md,mdx}";
+@source "../../../collections/**/*.{js,jsx,ts,tsx,md,mdx}";
+@source "../../theme/**/*.{js,jsx,ts,tsx,md,mdx}";
+
+/**
+ * Academic Lab - Custom Styles
+ * 
+ * Centralized brand tokens and theme configuration for Docusaurus Infima.
+ */
+
+:root {
+  --dark-mode: selector('[data-theme="dark"]');
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Ubuntu Mono', 'Menlo', 'Monaco', 'Courier New',
+    monospace;
+
+  /* --- Brand Tokens --- */
+  --color-identity-primary: #4c4d9a;
+  --color-identity-secondary: #e8e9f5;
+  --color-identity-tertiary: #35366c;
+  --color-background-light: #ffffff;
+  --color-background-tint: #f8f9fa;
+  --color-background-shade: #1a1b26;
+  --color-body-dark: #2e3440;
+  --color-body-light: #e5e9f0;
+  --color-title-dark: #1e222a;
+  --color-title-light: #eceff4;
+  --color-border-light: #e2e8f0;
+  --color-success: #10b981;
+  --color-info: #3b82f6;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  /* --- Infima Brand Mapping --- */
+  --ifm-color-primary: var(--color-identity-primary);
+  --ifm-color-primary-dark: #44458b;
+  --ifm-color-primary-darker: #404183;
+  --ifm-color-primary-darkest: #35366c;
+  --ifm-color-primary-light: #5e5faf;
+  --ifm-color-primary-lighter: #6a6bbd;
+  --ifm-color-primary-lightest: #8889cc;
+
+  /* --- Surface Mapping --- */
+  --ifm-background-color: var(--color-background-light);
+  --ifm-background-surface-color: var(--color-background-tint);
+
+  /* --- Typography --- */
+  --ifm-font-family-base: var(--font-sans);
+  --ifm-heading-font-family: var(--font-sans);
+  --ifm-font-color-base: var(--color-body-dark);
+  --ifm-heading-color: var(--color-title-dark);
+
+  /* --- Navbar --- */
+  --ifm-navbar-background-color: var(--color-background-tint);
+  --ifm-navbar-link-color: var(--color-title-dark);
+  --ifm-navbar-link-hover-color: var(--color-identity-primary);
+
+  /* --- Footer --- */
+  --ifm-footer-background-color: var(--color-background-shade);
+  --ifm-footer-color: var(--color-body-light);
+  --ifm-footer-link-color: var(--color-body-light);
+  --ifm-footer-title-color: var(--color-title-light);
+  --ifm-footer-link-hover-color: var(--color-identity-secondary);
+  --ifm-footer-padding-vertical: 1.5rem;
+
+  /* --- Sidebar / Menu --- */
+  --ifm-menu-color: var(--color-body-dark);
+  --ifm-menu-color-active: var(--color-identity-tertiary);
+  --ifm-menu-color-background-active: var(--color-identity-secondary);
+  --ifm-menu-color-background-hover: var(--color-background-tint);
+
+  /* --- Borders & Components --- */
+  --ifm-border-color: var(--color-border-light);
+
+  /* --- Status / Feedback Colors --- */
+  --ifm-color-success: var(--color-success);
+  --ifm-color-info: var(--color-info);
+  --ifm-color-warning: var(--color-warning);
+  --ifm-color-danger: var(--color-error);
+
+  /* --- Code Blocks --- */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(76, 77, 154, 0.1);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html,
+body {
+  background-color: var(--ifm-footer-background-color);
+  overflow-x: clip;
+}
+
+.main-wrapper {
+  background-color: var(--ifm-background-color);
+  min-height: calc(100vh - var(--ifm-navbar-height));
+  width: 100%;
+}
+
+#__docusaurus {
+  background-color: var(--ifm-footer-background-color);
+}
+
+/* GitHub Navbar Icon */
+.header-github-link::before {
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  background-color: currentColor;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-size: 100%;
+}
+
+.header-github-link:hover {
+  opacity: 0.6;
+}

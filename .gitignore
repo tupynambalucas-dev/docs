@@ -1,0 +1,68 @@
+docs-backup/
+
+# ---------------------------------------------------------------- #
+#  GLOBAL MONOREPO GITIGNORE
+# ---------------------------------------------------------------- #
+
+# --- Dependências & Gerenciadores de Pacote ---
+node_modules/
+.pnpm-store/
+.vscode-test/
+
+# --- GitHub ---
+.github/workflows/disabled/
+
+# --- Builds e Compilação (Frontend, Backend & Shared) ---
+dist/
+build/
+out/
+coverage/
+*.tsbuildinfo
+.eslintcache
+
+# --- Ambiente e Segredos (CRÍTICO) ---
+.env
+*.env.*
+.env.*
+!*.env.example*
+!.env.example
+!.env.*.example
+
+# Chaves e Certificados
+mongo-keyfile
+*.p12
+*.pem
+*.key
+REGULATIONS_AND_GUIDELINES_STRATEGY.md
+
+# --- Logs e Diagnósticos ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# --- IDEs e Editores ---
+.idea/
+*.swp
+*.swo
+*.swn
+
+# --- Sistema Operacional ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+gha-creds-*.json
+
+# Turborepo
+.turbo
+
+# --- Persistent runtime ---
+data/
+logs/
+
+# Docusaurus Services
+.docusaurus/
+.cache-loader/

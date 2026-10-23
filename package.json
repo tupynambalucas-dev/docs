@@ -1,0 +1,68 @@
+{
+  "name": "@tupynambalucas-dev/docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Root documentation and knowledge base portal for the tupynambalucas-dev ecosystem.",
+  "author": "Tupynambá Lucas Varela Rodrigues <tupynambalucas.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tupynambalucas-dev/docs.git"
+  },
+  "type": "module",
+  "packageManager": "pnpm@12.6.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.6.0"
+    }
+  },
+  "scripts": {
+    "// Portal Scripts": "----------------------------------------------------",
+    "portal:dev": "pnpm --filter @tupynambalucas-dev/corporate-portal start",
+    "portal:dev:pt": "pnpm --filter @tupynambalucas-dev/corporate-portal start:pt",
+    "portal:build": "turbo run build --filter=@tupynambalucas-dev/corporate-portal",
+    "portal:preview": "pnpm portal:build && pnpm --filter @tupynambalucas-dev/corporate-portal serve",
+    "portal:clear": "pnpm --filter @tupynambalucas-dev/corporate-portal clear",
+    "portal:down": "pnpm dlx kill-port 3002",
+    "portal:typecheck": "turbo run typecheck --filter=@tupynambalucas-dev/corporate-portal --filter=@tupynambalucas-dev/corporate-preset --filter=@tupynambalucas-dev/corporate-theme --filter=@tupynambalucas-dev/corporate-collections",
+    "portal:lint": "turbo run lint --filter=@tupynambalucas-dev/corporate-portal --filter=@tupynambalucas-dev/corporate-preset --filter=@tupynambalucas-dev/corporate-theme --filter=@tupynambalucas-dev/corporate-collections",
+    "portal:generate:changelog": "pnpm --filter @tupynambalucas-dev/corporate-portal generate:changelog",
+    "portal:generate:roadmap": "pnpm --filter @tupynambalucas-dev/corporate-portal generate:roadmap",
+    "// Legacy KB Context": "--------------------------------------------------",
+    "kb:typecheck": "turbo run typecheck --filter=\"@academic-lab/*\"",
+    "kb:lint": "turbo run lint --filter=\"@academic-lab/*\"",
+    "kb:dev": "pnpm --filter @academic-lab/app-main start",
+    "kb:build": "turbo run build --filter=@academic-lab/app-main",
+    "kb:preview": "pnpm kb:build && pnpm --filter @academic-lab/app-main serve",
+    "kb:clear": "pnpm --filter @academic-lab/app-main clear",
+    "kb:down": "pnpm dlx kill-port 3002",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@docusaurus/eslint-plugin": "catalog:tooling-stack",
+    "@eslint-react/eslint-plugin": "catalog:web-stack",
+    "@eslint/js": "catalog:tooling-stack",
+    "@types/node": "catalog:",
+    "@typescript-eslint/eslint-plugin": "catalog:tooling-stack",
+    "eslint": "catalog:tooling-stack",
+    "eslint-config-prettier": "catalog:tooling-stack",
+    "eslint-import-resolver-typescript": "catalog:tooling-stack",
+    "eslint-plugin-import-x": "catalog:tooling-stack",
+    "eslint-plugin-mdx": "catalog:tooling-stack",
+    "eslint-plugin-prettier": "catalog:tooling-stack",
+    "eslint-plugin-react-refresh": "catalog:web-stack",
+    "eslint-plugin-react-hooks": "catalog:tooling-stack",
+    "globals": "catalog:tooling-stack",
+    "jiti": "catalog:tooling-stack",
+    "kill-port": "catalog:",
+    "prettier": "catalog:tooling-stack",
+    "rimraf": "catalog:",
+    "tsx": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:tooling-stack"
+  }
+}

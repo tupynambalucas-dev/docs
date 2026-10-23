@@ -1,0 +1,38 @@
+---
+slug: overview
+title: Arquitetura de Conhecimento Desacoplada com Docusaurus e Monorepo
+authors: [tupynambalucas]
+tags: [architecture, monorepo, core]
+date: 2026-10-21
+---
+
+Neste artigo, compartilhamos os bastidores técnicos e a motivação arquitetural por trás da estrutura
+modular adotada no **Academic Lab**, segregando coleções de conteúdo do motor de compilação web.
+
+{/* truncate */}
+
+## O Desafio da Mistura entre Código e Conteúdo
+
+Em setups padrão de documentação estática, os arquivos de texto residem diretamente na pasta do
+gerador de sites. Quando o projeto cresce e abrange múltiplos domínios ou diferentes tipos de
+mídia, surgem atritos frequentes:
+
+1. Atualizações de bibliotecas e plugins podem afetar a renderização do conteúdo.
+2. É complexo reutilizar as mesmas notas em múltiplos sites ou formatos (PDFs, apresentações ou
+   aplicativos móveis).
+3. Agentes de IA acabam tendo que navegar por centenas de arquivos de configuração para encontrar um
+   simples parágrafo de conteúdo.
+
+## A Solução: Preset Dinâmico e Coleções Puras
+
+No Academic Lab, resolvemos isso separando radicalmente as camadas:
+
+- **Camada de Conteúdo Puro (`@academic-lab/collections`)**: Abriga unicamente arquivos `.mdx`
+  organizados por tema ou disciplina.
+- **Preset de Orquestração (`@academic-lab/preset`)**: Pacote TypeScript reutilizável que intercepta
+  os caminhos e os entrega transparentemente ao Docusaurus 3.
+- **Camada de Apresentação (`@academic-lab/app-main`)**: Aplicação focada estritamente no build e no
+  serviço web.
+
+Com essa arquitetura limpa, o pesquisador foca 100% no conteúdo acadêmico, com a certeza de que a
+infraestrutura tecnológica sustentará o crescimento do laboratório por muitos anos.

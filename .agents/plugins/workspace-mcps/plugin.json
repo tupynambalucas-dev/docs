@@ -1,0 +1,5 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "workspace-mcps",
+  "description": "Workspace plugin that provides local Model Context Protocol (MCP) server integrations (Firecrawl and Context7) for academic research and live documentation indexing."
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@tupynambalucas-dev/corporate-collections",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Centralized documentation and blog content collections.",
+  "type": "module",
+  "exports": {
+    "./docs/*": "./docs/*",
+    "./blogs/*": "./blogs/*",
+    "./locales/*": "./locales/*",
+    "./crowdin/*": "./crowdin/*",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@tupynambalucas-dev/shared-config": "workspace:*",
+    "prettier": "catalog:tooling-stack"
+  }
+}

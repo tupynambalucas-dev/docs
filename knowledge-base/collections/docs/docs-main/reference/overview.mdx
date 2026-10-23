@@ -1,0 +1,90 @@
+---
+id: reference-overview
+title: Especificação Técnica da Arquitetura
+description: Especificação técnica formal de pacotes, comandos e variáveis de configuração central do Academic Lab.
+sidebar_position: 2
+---
+
+# Especificação Técnica da Arquitetura
+
+Esta página consolida as definições técnicas do monorepo `@tupynambalucas/academic-lab`.
+
+---
+
+## 1. Pacotes do Monorepo
+
+O workspace é configurado no arquivo `pnpm-workspace.yaml` e compreende os seguintes pacotes:
+
+### `@academic-lab/config`
+
+- **Caminho**: `config/`
+- **Ponto de Entrada**: `src/project.config.ts`, `src/prettierrc.json`, `src/tsconfig.base.json`.
+- **Dependências**: Nenhuma dependência interna.
+
+### `@academic-lab/collections`
+
+- **Caminho**: `knowledge-base/collections/`
+- **Ponto de Entrada**: Subpastas `docs/` e `blogs/`.
+- **Dependências**: `@academic-lab/config`.
+
+### `@academic-lab/preset`
+
+- **Caminho**: `knowledge-base/packages/preset/`
+- **Ponto de Entrada**: `dist/index.js`, `dist/sidebars/index.js`, `dist/themeConfig.js`.
+- **Dependências**: `@academic-lab/collections`, `@academic-lab/config`, `@academic-lab/theme`.
+
+### `@academic-lab/theme`
+
+- **Caminho**: `knowledge-base/packages/theme/`
+- **Ponto de Entrada**: `dist/index.js`, `src/css/custom.css`.
+- **Dependências**: `@academic-lab/config`.
+
+### `@academic-lab/app-main`
+
+- **Caminho**: `knowledge-base/apps/main/`
+- **Ponto de Entrada**: `docusaurus.config.ts`, `src/pages/index.tsx`.
+- **Dependências**: Consome todos os pacotes `@academic-lab/*` acima.
+
+---
+
+## 2. Variáveis de Configuração Global (`project.config.ts`)
+
+O arquivo `config/src/project.config.ts` exporta as seguintes variáveis constantes fortemente
+tipadas:
+
+| Chave                   | Tipo     | Descrição                                   |
+| :---------------------- | :------- | :------------------------------------------ |
+| `PROJECT_NAME`          | `string` | Nome formal do projeto (`Academic Lab`).    |
+| `PROJECT_DISPLAY_NAME`  | `string` | Nome de exibição nas barras de navegação.   |
+| `PROJECT_DOMAIN`        | `string` | Domínio público oficial na web.             |
+| `PROJECT_DOCS_URL`      | `string` | URL canônica da documentação.               |
+| `PROJECT_INTERNAL_HOST` | `string` | Host interno para resoluções de rede.       |
+| `GITHUB_ORG`            | `string` | Organização ou usuário do GitHub.           |
+| `REPOSITORY_NAME`       | `string` | Nome exato do repositório (`academic-lab`). |
+| `AUTHOR_NAME`           | `string` | Nome completo do pesquisador/autor.         |
+| `STUDENT_NAME`          | `string` | Nome acadêmico abreviado.                   |
+| `SITE_TITLE`            | `string` | Título da página web no Docusaurus.         |
+| `SITE_TAGLINE`          | `string` | Subtítulo e lema do laboratório.            |
+
+---
+
+## 3. Comandos de Script Turborepo
+
+Os comandos globais disponibilizados na raiz do repositório são:
+
+```bash
+# Executa checagem de tipos estática em todos os pacotes
+pnpm kb:typecheck
+
+# Executa os linters de código e documentação
+pnpm kb:lint
+
+# Compila o portal Docusaurus para produção
+pnpm kb:build
+
+# Inicia o servidor local de desenvolvimento na porta 3002
+pnpm kb:dev
+
+# Limpa artefatos temporários de build e cache
+pnpm kb:clear
+```

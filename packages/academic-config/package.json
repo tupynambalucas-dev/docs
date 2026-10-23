@@ -1,0 +1,14 @@
+{
+  "name": "@academic-lab/config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "../../config/src/prettierrc.json",
+    "./tsconfig.base.json": "../../config/src/tsconfig.base.json",
+    "./prettierrc.json": "../../config/src/prettierrc.json",
+    "./.prettierignore": "../../config/src/.prettierignore",
+    "./project.config": "../../config/src/project.config.ts"
+  }
+}

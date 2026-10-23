@@ -1,0 +1,10 @@
+{
+  "label": "Roadmap Acadêmico",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Marcos estratégicos e fases de evolução do Academic Lab."
+  }
+}
