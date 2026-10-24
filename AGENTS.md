@@ -15,6 +15,7 @@ This document serves as the root context router (Layer 1) for AI agents operatin
 
 - [README.md](./README.md): The developer and contributor entry point for the repository.
 - [crowdin.yml](./crowdin.yml): Configuration mapping for Crowdin localization pipelines.
+- [agent-toolkit](../agent-toolkit/AGENTS.md): Organization AI agent governance and skills (via `org-core`).
 
 ## Bounded Contexts
 
@@ -37,6 +38,7 @@ This document serves as the root context router (Layer 1) for AI agents operatin
     in Portuguese (pt-BR).
 - MUST NOT use emojis in any technical document, README, or skill file.
 - MUST NOT use placeholders (e.g., TODO, TBD).
+- MUST sign all Git commits with SSH: `git commit -S -m "..."`.
 - MUST use relative paths for all Markdown links. Absolute filesystem paths are strictly forbidden.
 - MUST format all files according to Prettier standards (2-space indent, max 100-character line width).
 
