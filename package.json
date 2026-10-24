@@ -34,6 +34,7 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
+    "@tupynambalucas-dev/agent-toolkit": "github:tupynambalucas-dev/agent-toolkit",
     "@docusaurus/eslint-plugin": "catalog:tooling-stack",
     "@eslint-react/eslint-plugin": "catalog:web-stack",
     "@eslint/js": "catalog:tooling-stack",

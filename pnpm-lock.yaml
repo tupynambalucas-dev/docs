@@ -354,6 +354,9 @@ importers:
       '@eslint/js':
         specifier: catalog:tooling-stack
         version: 10.0.1(eslint@10.11.0(jiti@2.7.0)(supports-color@9.4.0))
+      '@tupynambalucas-dev/agent-toolkit':
+        specifier: github:tupynambalucas-dev/agent-toolkit
+        version: https://codeload.github.com/tupynambalucas-dev/agent-toolkit/tar.gz/5602e24345c3c7fced4edbf608d4addc48577a18
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.5
@@ -3261,6 +3264,10 @@ packages:
 
   '@tailwindcss/postcss@4.3.3':
     resolution: {integrity: sha512-JTSZZGQi1AyKirbLN3azmjVzef92tcX7h+iSqPdaeStyFpGpDlKvvpxeOE8njhbUanbRwr3z8DyzhICWnMtQeg==}
+
+  '@tupynambalucas-dev/agent-toolkit@https://codeload.github.com/tupynambalucas-dev/agent-toolkit/tar.gz/5602e24345c3c7fced4edbf608d4addc48577a18':
+    resolution: {gitHosted: true, integrity: sha512-UIp7S8clPD46wdCJYAVsNcHD+VG4+AZtEDe+Fr0Md6/U67DVFKmPe52YTcXG6hFONMYAdF8PtIiL1tuda0tgSg==, tarball: https://codeload.github.com/tupynambalucas-dev/agent-toolkit/tar.gz/5602e24345c3c7fced4edbf608d4addc48577a18}
+    version: 1.0.0
 
   '@turbo/darwin-64@2.11.5':
     resolution: {integrity: sha512-KdY4y7BBjIisl+jAkb3FFaRjClGqHyaeHCcVcCT8LBzFFwUu6thgfxyRZAx0uL4KoxLmH+iOan8UhVf/aDDcaA==}
@@ -11358,7 +11365,7 @@ snapshots:
   '@napi-rs/wasm-runtime@1.0.7':
     dependencies:
       '@emnapi/core': 1.10.0
-      '@emnapi/runtime': 1.10.0
+      '@emnapi/runtime': 1.11.3
       '@tybys/wasm-util': 0.10.4
     optional: true
 
@@ -11944,6 +11951,8 @@ snapshots:
       '@tailwindcss/oxide': 4.3.3
       postcss: 8.5.30
       tailwindcss: 4.3.3
+
+  '@tupynambalucas-dev/agent-toolkit@https://codeload.github.com/tupynambalucas-dev/agent-toolkit/tar.gz/5602e24345c3c7fced4edbf608d4addc48577a18': {}
 
   '@turbo/darwin-64@2.11.5':
     optional: true
