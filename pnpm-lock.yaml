@@ -354,9 +354,9 @@ importers:
       '@eslint/js':
         specifier: catalog:tooling-stack
         version: 10.0.1(eslint@10.11.0(jiti@2.7.0)(supports-color@9.4.0))
-      '@tupynambalucas-dev/agent-toolkit':
-        specifier: github:tupynambalucas-dev/agent-toolkit
-        version: https://codeload.github.com/tupynambalucas-dev/agent-toolkit/tar.gz/5602e24345c3c7fced4edbf608d4addc48577a18
+      '@tupynambalucas-dev/agent-mesh':
+        specifier: github:tupynambalucas-dev/agent-mesh
+        version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.5
@@ -3265,8 +3265,8 @@ packages:
   '@tailwindcss/postcss@4.3.3':
     resolution: {integrity: sha512-JTSZZGQi1AyKirbLN3azmjVzef92tcX7h+iSqPdaeStyFpGpDlKvvpxeOE8njhbUanbRwr3z8DyzhICWnMtQeg==}
 
-  '@tupynambalucas-dev/agent-toolkit@https://codeload.github.com/tupynambalucas-dev/agent-toolkit/tar.gz/5602e24345c3c7fced4edbf608d4addc48577a18':
-    resolution: {gitHosted: true, integrity: sha512-UIp7S8clPD46wdCJYAVsNcHD+VG4+AZtEDe+Fr0Md6/U67DVFKmPe52YTcXG6hFONMYAdF8PtIiL1tuda0tgSg==, tarball: https://codeload.github.com/tupynambalucas-dev/agent-toolkit/tar.gz/5602e24345c3c7fced4edbf608d4addc48577a18}
+  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b':
+    resolution: {gitHosted: true, integrity: sha512-7r7lrWZ8OP2jNkubvOHeyvvHlQ2NbV63ekkUdfPdyTk8XcsAptLSML75mBaFUahm3FGkd6VshPujO7rXaVLusA==, tarball: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b}
     version: 1.0.0
 
   '@turbo/darwin-64@2.11.5':
@@ -11952,7 +11952,7 @@ snapshots:
       postcss: 8.5.30
       tailwindcss: 4.3.3
 
-  '@tupynambalucas-dev/agent-toolkit@https://codeload.github.com/tupynambalucas-dev/agent-toolkit/tar.gz/5602e24345c3c7fced4edbf608d4addc48577a18': {}
+  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b': {}
 
   '@turbo/darwin-64@2.11.5':
     optional: true
