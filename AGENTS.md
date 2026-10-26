@@ -15,7 +15,7 @@ This document serves as the root context router (Layer 1) for AI agents operatin
 
 - [README.md](./README.md): The developer and contributor entry point for the repository.
 - [crowdin.yml](./crowdin.yml): Configuration mapping for Crowdin localization pipelines.
-- [agent-toolkit](../agent-toolkit/AGENTS.md): Organization AI agent governance and skills (via `org-core`).
+- [agent-mesh](../agent-mesh/AGENTS.md): Organization AI agent governance and skills (via `org-core`).
 
 ## Bounded Contexts
 
