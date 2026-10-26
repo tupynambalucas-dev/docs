@@ -106,8 +106,16 @@ Commands for the Docusaurus Knowledge Base (`docs/`).
 
 ## Git & Version Control
 
-Workflows for branching, committing, and releases.
+Workflows for branching, committing, SSH authentication, and releases.
 
+- **`ssh-keygen -t ed25519 -C "<email>" -f ~/.ssh/<key-name>`**: Generates a dedicated ED25519 SSH key pair.
+- **`ssh -T git@github.com`**: Tests authenticated SSH handshake with GitHub.
+- **`git config --global gpg.format ssh`**: Configures Git to use OpenSSH for cryptographic signing.
+- **`git config --global user.signingkey ~/.ssh/<key-name>.pub`**: Binds your public key as the active signing identity.
+- **`git config --global commit.gpgsign true`**: Enforces cryptographic signing on all commits automatically.
+- **`git commit -S -m "<message>"`**: Creates a commit explicitly signed with your configured SSH key.
+- **`git log --show-signature -1`**: Verifies cryptographic signature validity on the most recent commit.
+- **`git remote set-url origin git@github.com:%GITHUB_ORG%/<repo>.git`**: Sets remote tracking endpoint to SSH.
 - **`git flow feature start <name>`**: Starts a new feature branch from `develop`.
 - **`git push -u origin feature/<name>`**: Pushes a feature branch to the remote repository.
 - **`gh pr create --base develop --fill --web`**: Creates a Pull Request targeting the `develop` branch.

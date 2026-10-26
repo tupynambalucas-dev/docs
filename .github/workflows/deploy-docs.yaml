@@ -54,7 +54,7 @@ jobs:
         with:
           api_token: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
           account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          project_name: ${{ vars.CLOUDFLARE_PAGES_PROJECT_DOCS_NAME }}
+          project_name: ${{ vars.CLOUDFLARE_PAGES_PROJECT_DOCS_NAME || 'docs' }}
           directory: apps/portal/build
           production_branch: main
           custom_domain: 'docs.tupynambalucas.dev'

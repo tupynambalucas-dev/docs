@@ -1,0 +1,171 @@
+---
+title: Managing SSH Keys and Troubleshooting GitHub Push Issues
+description: How to resolve GH013 commit signature errors, manage multiple GitHub SSH profiles, and fix VS Code Source Control desynchronization.
+sidebar_position: 2
+---
+
+# Managing SSH Keys and Troubleshooting GitHub Push Issues
+
+This guide provides targeted instructions for diagnosing and resolving SSH authentication, commit verification, and editor integration problems across your repositories.
+
+---
+
+## Resolving GH013 Signature Violations
+
+When pushing to protected branches (such as `main` or `develop`), GitHub may reject the push with an error similar to:
+
+```text
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: Review all 1 rule violation:
+remote: - Commits must have verified signatures.
+```
+
+### Cause
+
+The repository or organization has enforced a cryptographic commit signing policy. Commits are rejected if:
+
+1. They were created without a cryptographic signature.
+2. The public key used to create the signature is not registered on GitHub as a **Signing Key** (even if it is already registered as an Authentication Key).
+3. The email in the Git commit does not match an email verified on your GitHub account.
+
+### Remediation Steps
+
+1. **Verify Key Registration Type on GitHub**:
+   Navigate to [GitHub SSH Keys](https://github.com/settings/keys) and ensure your key entry displays the badge **Signing Key** or **Authentication & Signing Key**. If only **Authentication Key** appears, register the public key again and select **Signing Key** in the **Key type** dropdown.
+
+2. **Re-sign the Head Commit**:
+   Amend the commit using your configured SSH signing key without altering the commit message:
+
+   ```bash
+   git commit --amend -S --no-edit
+   ```
+
+3. **Re-sign Multiple Unpushed Commits**:
+   If several commits in your local branch lack signatures, rebase them interactively:
+
+   ```bash
+   git rebase -i HEAD~3 --exec "git commit --amend -S --no-edit"
+   ```
+
+4. **Verify Signature Locally Before Pushing**:
+
+   ```bash
+   git log --show-signature -1
+   ```
+
+   Confirm that the output reports `Good "git" signature`.
+
+5. **Push with Signature**:
+
+   ```bash
+   git push origin <branch-name>
+   ```
+
+---
+
+## Fixing VS Code Source Control Desynchronization
+
+In multi-root workspaces (`.code-workspace`), VS Code caches Git repository metadata. The UI may continue displaying a **Publish Branch** button or an unpushed state even after successful CLI pushes.
+
+### 1. Refreshing the Internal Git Cache
+
+1. In the VS Code activity bar, open the **Source Control** view (`Ctrl+Shift+G`).
+2. Click the **Refresh** button (circular arrow icon) in the Source Control title bar.
+3. If the indicator does not clear, open the Command Palette (`Ctrl+Shift+P`) and execute:
+
+   ```text
+   Git: Refresh
+   ```
+
+4. If repository discovery is stalled, reload the editor window:
+
+   ```text
+   Developer: Reload Window
+   ```
+
+### 2. Standardizing Remote Protocols (HTTPS vs SSH)
+
+If a local repository was initialized with an HTTPS remote while global Git uses SSH rewrites, the VS Code Git extension can fail to map upstream tracking branches accurately.
+
+1. Inspect the active remote URL:
+
+   ```bash
+   git remote -v
+   ```
+
+2. If the URL uses `https://github.com/`, update it explicitly to SSH:
+
+   ```bash
+   git remote set-url origin git@github.com:%GITHUB_ORG%/<repo-name>.git
+   ```
+
+3. Re-fetch upstream refs:
+
+   ```bash
+   git fetch origin
+   git status -sb
+   ```
+
+---
+
+## Managing Multiple SSH Profiles
+
+When operating across personal and organization repositories on the same workstation, configure distinct SSH identities using Host aliases and Git conditional directory includes.
+
+### 1. SSH Host Aliasing (`~/.ssh/config`)
+
+Define separate host profiles in your SSH configuration:
+
+```ini
+# Organization Profile (Default)
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github_org_ed25519
+  IdentitiesOnly yes
+
+# Personal Profile
+Host github-personal
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github_personal_ed25519
+  IdentitiesOnly yes
+```
+
+When cloning personal repositories, use the alias host:
+
+```bash
+git clone git@github-personal:username/repository.git
+```
+
+### 2. Directory-Based Git Configuration (`includeIf`)
+
+Automatically switch commit authors and signing keys based on the filesystem location of your repositories:
+
+1. In your global Git config (`~/.gitconfig`), add conditional blocks:
+
+   ```ini
+   [includeIf "gitdir:~/projects/%GITHUB_ORG%/"]
+     path = ~/.gitconfig-org
+
+   [includeIf "gitdir:~/projects/personal/"]
+     path = ~/.gitconfig-personal
+   ```
+
+2. Create `~/.gitconfig-org`:
+
+   ```ini
+   [user]
+     name = Developer Name
+     email = dev@%PROJECT_DOMAIN%
+     signingkey = ~/.ssh/github_org_ed25519.pub
+   ```
+
+3. Create `~/.gitconfig-personal`:
+
+   ```ini
+   [user]
+     name = Personal Handle
+     email = personal@example.com
+     signingkey = ~/.ssh/github_personal_ed25519.pub
+   ```

@@ -1,0 +1,205 @@
+---
+title: Setting Up GitHub SSH Keys and Cryptographic Signing
+description: Step-by-step tutorial on generating ED25519 SSH keys, configuring non-interactive authentication, registering signing keys on GitHub, and verifying signed commits.
+sidebar_position: 4
+---
+
+# Setting Up GitHub SSH Keys and Cryptographic Signing
+
+In this tutorial, you will configure an enterprise-grade SSH workflow for GitHub. You will generate an ED25519 SSH key pair, configure non-interactive workstation authentication, register the key with GitHub for both repository operations and commit signing, and verify your signatures against branch protection rules.
+
+---
+
+## Prerequisites
+
+Before starting, ensure your workstation has the following tools installed and accessible from your terminal:
+
+- **Git** version 2.34 or higher (required for native SSH commit signing support).
+- **OpenSSH** client (`ssh` and `ssh-keygen`).
+- **GitHub CLI** (`gh`) (optional, recommended for automated key registration).
+- An active GitHub account with access to the %GITHUB_ORG% organization.
+
+---
+
+## Step 1: Generate an ED25519 Key Pair
+
+We recommend the **ED25519** public-key algorithm over RSA. ED25519 keys are cryptographically stronger, faster, and more compact.
+
+1. Open your terminal and run `ssh-keygen`:
+
+   ```bash
+   ssh-keygen -t ed25519 -C "your_email@example.com" -f ~/.ssh/github_ed25519
+   ```
+
+2. When prompted for a passphrase:
+   - For an automated or non-interactive workstation workflow, press `Enter` twice to proceed without a passphrase.
+   - For environments requiring encryption at rest, enter a strong passphrase and use an SSH agent with credential caching.
+
+3. Verify that the key pair was created in your `~/.ssh` directory:
+
+   ```bash
+   ls -la ~/.ssh/github_ed25519*
+   ```
+
+   You will see two files:
+   - `github_ed25519`: Your private key. Never share, commit, or expose this file.
+   - `github_ed25519.pub`: Your public key. This key will be uploaded to GitHub.
+
+---
+
+## Step 2: Configure the SSH Client
+
+Create or edit your local SSH configuration file (`~/.ssh/config`) to automatically route connections to `github.com` through your dedicated key.
+
+1. Open or create `~/.ssh/config`:
+
+   ```ini
+   Host github.com
+     HostName github.com
+     User git
+     IdentityFile ~/.ssh/github_ed25519
+     IdentitiesOnly yes
+     ServerAliveInterval 60
+   ```
+
+2. Set appropriate filesystem permissions on the `.ssh` directory and configuration files:
+
+   ```bash
+   chmod 700 ~/.ssh
+   chmod 600 ~/.ssh/config ~/.ssh/github_ed25519
+   chmod 644 ~/.ssh/github_ed25519.pub
+   ```
+
+   :::note[Windows Environments]
+   On Windows systems using PowerShell, OpenSSH respects permissions inherited from user security identifiers. The configuration above applies natively in Windows Terminal and PowerShell when using the system OpenSSH feature.
+   :::
+
+---
+
+## Step 3: Register the Key on GitHub
+
+GitHub distinguishes between two key types. To satisfy organization security policies and branch protection rules, your public key must be registered for **both**:
+
+- **Authentication Key**: Authorizes Git transport operations (`git fetch`, `git clone`, `git push`) over SSH.
+- **Signing Key**: Cryptographically verifies your commits and tags, displaying the green **Verified** badge.
+
+### Option A: Using the GitHub CLI (Recommended)
+
+1. Upload the key for authentication:
+
+   ```bash
+   gh ssh-key add ~/.ssh/github_ed25519.pub --title "Workstation Authentication" --type authentication
+   ```
+
+2. Upload the same key for cryptographic commit signing:
+
+   ```bash
+   gh ssh-key add ~/.ssh/github_ed25519.pub --title "Workstation Commit Signing" --type signing
+   ```
+
+### Option B: Using the GitHub Web Interface
+
+1. Copy your public key to your clipboard:
+
+   ```bash
+   # Windows PowerShell
+   Get-Content ~/.ssh/github_ed25519.pub | Set-Clipboard
+
+   # macOS
+   pbcopy < ~/.ssh/github_ed25519.pub
+
+   # Linux
+   xclip -sel clip < ~/.ssh/github_ed25519.pub
+   ```
+
+2. Navigate to [GitHub SSH and GPG keys settings](https://github.com/settings/keys).
+3. Click **New SSH key**.
+4. In the **Title** field, enter an identifier (e.g., `Workstation ED25519`).
+5. In the **Key type** dropdown, select **Authentication Key**, paste your key, and click **Add SSH key**.
+6. Click **New SSH key** again.
+7. Enter the title (e.g., `Workstation Signing ED25519`), select **Signing Key** in the **Key type** dropdown, paste the key, and click **Add SSH key**.
+
+---
+
+## Step 4: Configure Git for Native SSH Signing
+
+Configure Git globally to use SSH for commit signing instead of GPG.
+
+1. Set SSH as the signing format:
+
+   ```bash
+   git config --global gpg.format ssh
+   ```
+
+2. Specify the public key path as your signing identity:
+
+   ```bash
+   git config --global user.signingkey ~/.ssh/github_ed25519.pub
+   ```
+
+3. Enable automatic commit signing across all repositories:
+
+   ```bash
+   git config --global commit.gpgsign true
+   ```
+
+4. Configure Git to automatically rewrite HTTPS GitHub URLs to SSH:
+
+   ```bash
+   git config --global url."git@github.com:".insteadOf "https://github.com/"
+   ```
+
+5. Confirm your Git configuration:
+
+   ```bash
+   git config --global --get gpg.format
+   git config --global --get user.signingkey
+   git config --global --get commit.gpgsign
+   ```
+
+---
+
+## Step 5: Test Connectivity and Verify a Signed Commit
+
+1. Verify the SSH connection to GitHub:
+
+   ```bash
+   ssh -T git@github.com
+   ```
+
+   You should receive a welcome response confirming your username:
+
+   ```text
+   Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+   ```
+
+2. Make a signed commit in your local repository:
+
+   ```bash
+   git commit -m "chore: test cryptographic ssh commit signature"
+   ```
+
+   :::tip[Manual Signing Flag]
+   Because `commit.gpgsign` is set to `true`, all commits are signed automatically. You can explicitly sign using the `-S` flag (`git commit -S -m "..."`).
+   :::
+
+3. Inspect the cryptographic signature locally:
+
+   ```bash
+   git log --show-signature -1
+   ```
+
+   The log output will confirm a valid SSH signature:
+
+   ```text
+   commit 0a1b2c3...
+   Good "git" signature for your_email@example.com with ED25519 key ...
+   ```
+
+4. Push the branch to GitHub:
+
+   ```bash
+   git push origin develop
+   ```
+
+5. Open the commit in GitHub. The commit header will display the verified badge, satisfying all organization branch protection constraints.
