@@ -4,7 +4,7 @@
   "private": true,
   "description": "Canonical design tokens, icons, and visual brand assets.",
   "author": "Tupynambá Lucas Varela Rodrigues <tupynambalucas.dev>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "homepage": "https://docs.tupynambalucas.dev",
   "repository": {
     "type": "git",

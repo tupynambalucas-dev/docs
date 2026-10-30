@@ -19,13 +19,13 @@ git pull origin develop
 Now, we will create a new feature branch for our work:
 
 ```bash
-git checkout -b feature/tutorial-contribution
+git checkout -b feat/tutorial-contribution
 ```
 
 Git will output:
 
 ```
-Switched to a new branch 'feature/tutorial-contribution'
+Switched to a new branch 'feat/tutorial-contribution'
 ```
 
 ## Step 2: Make a Code Change
@@ -73,11 +73,11 @@ Our local Git hooks will automatically intercept the commit, running the selecti
 You should see output similar to this:
 
 ```
-✔ Preparing lint-staged...
-✔ Running tasks for staged files...
-✔ Applying modifications...
-✔ Cleaning up...
-[feature/tutorial-contribution 1a2b3c4] test(corporate): add tutorial contribution comment
+ Preparing lint-staged...
+ Running tasks for staged files...
+ Applying modifications...
+ Cleaning up...
+[feat/tutorial-contribution 1a2b3c4] test(corporate): add tutorial contribution comment
  2 files changed, 8 insertions(+)
 ```
 
@@ -86,13 +86,13 @@ You should see output similar to this:
 With our commit safely created and locally validated, we will push our branch to GitHub and open a Pull Request.
 
 ```bash
-git push -u origin feature/tutorial-contribution
+git push -u origin feat/tutorial-contribution
 ```
 
 Next, using the GitHub CLI, we will create the Pull Request targeting the `develop` branch:
 
 ```bash
-gh pr create --base develop --title "test: tutorial contribution" --body "Testing the contribution workflow."
+gh pr create --base main --title "test: tutorial contribution" --body "Testing the contribution workflow."
 ```
 
 The CLI will output the URL of your new Pull Request:

@@ -4,7 +4,7 @@
   "private": true,
   "description": "Root documentation and knowledge base portal for the tupynambalucas-dev ecosystem.",
   "author": "Tupynambá Lucas Varela Rodrigues <tupynambalucas.dev>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tupynambalucas-dev/docs.git"

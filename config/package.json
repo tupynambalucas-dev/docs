@@ -4,7 +4,7 @@
   "private": true,
   "description": "Global configuration and constant definitions shared across all workspaces.",
   "author": "Tupynambá Lucas Varela Rodrigues <tupynambalucas.dev>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "homepage": "https://docs.tupynambalucas.dev",
   "repository": {
     "type": "git",

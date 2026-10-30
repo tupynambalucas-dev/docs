@@ -116,11 +116,11 @@ Workflows for branching, committing, SSH authentication, and releases.
 - **`git commit -S -m "<message>"`**: Creates a commit explicitly signed with your configured SSH key.
 - **`git log --show-signature -1`**: Verifies cryptographic signature validity on the most recent commit.
 - **`git remote set-url origin git@github.com:%GITHUB_ORG%/<repo>.git`**: Sets remote tracking endpoint to SSH.
-- **`git flow feature start <name>`**: Starts a new feature branch from `develop`.
-- **`git push -u origin feature/<name>`**: Pushes a feature branch to the remote repository.
-- **`gh pr create --base develop --fill --web`**: Creates a Pull Request targeting the `develop` branch.
+- **`git checkout -b feat/ <name>`**: Starts a new feature branch from `develop`.
+- **`git push -u origin feat/<name>`**: Pushes a feature branch to the remote repository.
+- **`gh pr create --base main --fill --web`**: Creates a Pull Request targeting the `develop` branch.
 - **`gh pr merge --squash --delete-branch`**: Merges a PR using the squash-and-merge strategy.
-- **`git flow hotfix start <name>`** / **`git flow hotfix finish <name>`**: Manages emergency fixes against the `main` branch.
+- **`GitHub Flow hotfix start <name>`** / **`GitHub Flow hotfix finish <name>`**: Manages emergency fixes against the `main` branch.
 - **`pnpm version:changeset`**: Generates a changeset file to track version bumps and changelogs.
 - **`pnpm version:bump`**: Bumps packages version based on changesets.
 - **`pnpm version:publish`**: Publishes all updated packages to registries.
