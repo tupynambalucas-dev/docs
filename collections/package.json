@@ -17,5 +17,6 @@
   "devDependencies": {
     "@tupynambalucas-dev/shared-config": "workspace:*",
     "prettier": "catalog:tooling-stack"
-  }
+  },
+  "license": "Apache-2.0"
 }

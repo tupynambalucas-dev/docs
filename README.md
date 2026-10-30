@@ -1,6 +1,6 @@
 # Documentation Hub
 
-Centralized documentation hub, developer portal, and multi-project knowledge base for the `tupynambalucas-dev` organization.
+Centralized documentation hub, mainer portal, and multi-project knowledge base for the `tupynambalucas-dev` organization.
 
 ## Architecture
 
@@ -30,7 +30,7 @@ Deployments and continuous translation pipelines utilize credentials managed thr
 
 ### Execution Modes
 
-- **Meta-Repository Mode (`org-core`)**: When developing inside `org-core`, secrets cascade from the umbrella environment or root Infisical session.
+- **Meta-Repository Mode (`org-core`)**: When maining inside `org-core`, secrets cascade from the umbrella environment or root Infisical session.
 - **Standalone Workspace Mode (`docs`)**: When opened independently, run commands using project-scoped Infisical credentials or set repository secrets in GitHub Actions:
   ```bash
   infisical run --projectId <DOCS_PROJECT_ID> --env dev -- pnpm portal:dev

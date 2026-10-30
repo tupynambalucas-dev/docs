@@ -39,5 +39,6 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:web-stack",
     "typescript": "catalog:"
-  }
+  },
+  "license": "Apache-2.0"
 }

@@ -16,7 +16,7 @@ inputs:
     required: true
   production_branch:
     description: 'Production branch name (e.g. main or develop)'
-    default: 'develop'
+    default: 'main'
   custom_domain:
     description: 'Custom domain to bind (optional)'
     required: false
@@ -34,11 +34,11 @@ runs:
         output=$(pnpm exec wrangler pages project create "${{ inputs.project_name }}" --production-branch="${{ inputs.production_branch }}" 2>&1 || true)
 
         if echo "$output" | grep -qiE "already exists"; then
-          echo "✅ Project '${{ inputs.project_name }}' already exists."
+          echo " Project '${{ inputs.project_name }}' already exists."
         elif echo "$output" | grep -qiE "Successfully created"; then
-          echo "✨ Project '${{ inputs.project_name }}' successfully created!"
+          echo " Project '${{ inputs.project_name }}' successfully created!"
         else
-          echo "⚠️ Unexpected output during project creation."
+          echo "️ Unexpected output during project creation."
           echo "$output"
         fi
 
@@ -60,9 +60,9 @@ runs:
           -d "{\"name\":\"${{ inputs.custom_domain }}\"}")
           
         if [ "$response" == "200" ] || [ "$response" == "201" ]; then
-          echo "✅ Domain '${{ inputs.custom_domain }}' successfully bound."
+          echo " Domain '${{ inputs.custom_domain }}' successfully bound."
         elif [ "$response" == "400" ]; then
           echo "ℹ️ Domain might already be bound or invalid. API returned 400."
         else
-          echo "⚠️ Failed to bind domain. HTTP status: $response"
+          echo "️ Failed to bind domain. HTTP status: $response"
         fi

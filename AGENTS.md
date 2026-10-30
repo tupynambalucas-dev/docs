@@ -35,7 +35,7 @@ This document serves as the root context router (Layer 1) for AI agents operatin
 - **Language Policy**:
   - All AGENTS.md, README.md, and configuration files MUST be written in English (en-US).
   - All documentation content in `collections/` and execution plans in `.agents/plans/` MUST be written
-    in Portuguese (pt-BR).
+    in Portuguese (en-US).
 - MUST NOT use emojis in any technical document, README, or skill file.
 - MUST NOT use placeholders (e.g., TODO, TBD).
 - MUST sign all Git commits with SSH: `git commit -S -m "..."`.
@@ -49,5 +49,5 @@ skill by name before proceeding:
 
 - **`agent-router-expert`**: Active when creating or reviewing any AGENTS.md file in the repository.
 - **`markdown-expert`**: Active when creating, updating, or reviewing any README.md or general Markdown.
-- **`docusaurus-expert`**: Active when authoring MDX documentation, managing collections, or configuring
+- **`docusaurus-architect, docusaurus-mdx-architect, docusaurus-auditor`**: Active when authoring MDX documentation, managing collections, or configuring
   Docusaurus presets and plugins.

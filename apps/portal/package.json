@@ -2,6 +2,7 @@
   "name": "@tupynambalucas-dev/corporate-portal",
   "version": "1.0.0",
   "private": true,
+  "license": "Apache-2.0",
   "description": "Knowledge base and developer documentation site for the monorepo.",
   "exports": {
     "./package.json": "./package.json",

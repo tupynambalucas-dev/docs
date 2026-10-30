@@ -1,34 +1,34 @@
 ---
 title: GitHub Workflow
-description: How to collaborate, branch, and release using our GitHub and Git Flow standards.
+description: How to collaborate, branch, and release using our GitHub and GitHub Flow standards.
 ---
 
 # GitHub Workflow
 
-This guide shows you how to use our branching model and release strategy, combining Git Flow with the GitHub CLI.
+This guide shows you how to use our branching model and release strategy, combining GitHub Flow with the GitHub CLI.
 
 ## Branching Model
 
-We follow the standard Git Flow model to ensure the stability of our production code, adapted for our monorepo structure.
+We follow the standard GitHub Flow model to ensure the stability of our production code, adapted for our monorepo structure.
 
 | Branch          | Purpose                                                | Stability        |
 | :-------------- | :----------------------------------------------------- | :--------------- |
 | **`main`**      | Production releases. Every commit is a tagged release. | **Ultra Stable** |
 | **`develop`**   | Next release development. Integration branch.          | **Stable**       |
-| **`feature/*`** | New features or UI changes. Branch off `develop`.      | Experimental     |
+| **`feat/*`** | New features or UI changes. Branch off `develop`.      | Experimental     |
 | **`bugfix/*`**  | Bug fixes for the next development cycle.              | Experimental     |
 | **`release/*`** | Preparation for a new production release.              | Final Polish     |
 | **`hotfix/*`**  | Critical bug fixes for the production version.         | Urgent           |
 | **`support/*`** | Long-term support branches for older major releases.   | Stable           |
 
-### Git Flow CLI Configuration
+### GitHub Flow CLI Configuration
 
 Our local repository is configured with the following prefixes and tag rules:
 
 ```ini
 Branch name for production releases: main
 Branch name for "next release" development: develop
-Feature branch prefix: feature/
+Feature branch prefix: feat/
 Bugfix branch prefix: bugfix/
 Release branch prefix: release/
 Hotfix branch prefix: hotfix/
@@ -42,7 +42,7 @@ Version tag prefix: v
 
 To follow this workflow efficiently, we recommend:
 
-1.  **Git Flow CLI (AVH Edition)**: Usually included in Git for Windows or available via `gitflow` package.
+1.  **GitHub Flow CLI (AVH Edition)**: Usually included in Git for Windows or available via `gitflow` package.
 2.  **GitHub CLI (`gh`)**: Used for Pull Requests, status monitoring, and official releases.
 3.  **SSH Key & Cryptographic Signing**: Required for push access and branch protection compliance. See the [SSH Setup Tutorial](../tutorials/github-ssh-setup.mdx) and [SSH Key Management Guide](./github-ssh-keys.mdx).
 
@@ -50,7 +50,7 @@ To follow this workflow efficiently, we recommend:
 
 ### 1. Starting a New Feature
 
-Always branch off from `develop`. See the [Command Reference](../reference/commands.mdx#git--version-control) for the exact `git flow` command.
+Always branch off from `develop`. See the [Command Reference](../reference/commands.mdx#git--version-control) for the exact `GitHub Flow` command.
 
 ### 2. Collaborating and Proposing Changes
 
@@ -116,13 +116,13 @@ Never edit the `"version"` field in a package's `package.json` manually during a
 If a bug is found in production:
 
 1.  Start and finish a hotfix branch.
-2.  See the [Command Reference](../reference/commands.mdx#git--version-control) for the exact `git flow hotfix` commands.
+2.  See the [Command Reference](../reference/commands.mdx#git--version-control) for the exact `GitHub Flow hotfix` commands.
 3.  Sync both `main` and `develop`.
 
 ---
 
 - **No direct commits to `main` or `develop`**: Always use feature branches and PRs.
 - **No Force Pushes**: Unless on your own isolated feature branch and required for a rebase.
-- **No Dirty Merges**: Avoid merging `main` back into `feature/*`. Always **rebase** onto `develop` if your feature branch becomes outdated.
+- **No Dirty Merges**: Avoid merging `main` back into `feat/*`. Always **rebase** onto `develop` if your feature branch becomes outdated.
 
 ---
