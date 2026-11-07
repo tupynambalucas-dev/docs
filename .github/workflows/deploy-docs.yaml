@@ -17,8 +17,22 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate CI Bot Token
+        id: app-token
+        env:
+          APP_ID: ${{ secrets.CI_BOT_APP_ID || secrets.CI_APP_ID }}
+          APP_PRIVATE_KEY: ${{ secrets.CI_BOT_APP_PRIVATE_KEY || secrets.CI_APP_PRIVATE_KEY }}
+        if: ${{ env.APP_ID != '' && env.APP_PRIVATE_KEY != '' }}
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1.12.0
+        with:
+          app-id: ${{ env.APP_ID }}
+          private-key: ${{ env.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.2.2
+        with:
+          token: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
 
       - name: Setup PNPM Environment
         uses: ./.github/actions/setup-pnpm-env
@@ -34,8 +48,8 @@ jobs:
 
       - name: Commit and Push Compiled Documents
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "tupynambalucas-ci-bot[bot]"
+          git config --global user.email "5650100+tupynambalucas-ci-bot[bot]@users.noreply.github.com"
           git add CHANGELOG.md ROADMAP.md || true
           if git diff --staged --quiet; then
             echo "No changes to CHANGELOG.md or ROADMAP.md"
