@@ -79,6 +79,10 @@ catalogs:
     "@fontsource-variable/nunito": "^5.2.7"
     "react-icons": ^5.7.0
 
+  # Enterprise Agent Mesh Plugins (git package distribution fallback & registry mirror)
+  plugins-stack:
+    "@tupynambalucas-dev/agent-mesh": "github:tupynambalucas-dev/agent-mesh"
+
   docs-stack:
     "@docusaurus/core": "3.10.2"
     "@docusaurus/preset-classic": "3.10.2"

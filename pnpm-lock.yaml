@@ -255,6 +255,10 @@ catalogs:
     prism-react-renderer:
       specifier: ^2.4.1
       version: 2.4.1
+  plugins-stack:
+    '@tupynambalucas-dev/agent-mesh':
+      specifier: github:tupynambalucas-dev/agent-mesh
+      version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b
   shared-stack:
     dotenv:
       specifier: ^18.0.4
@@ -355,7 +359,7 @@ importers:
         specifier: catalog:tooling-stack
         version: 10.0.1(eslint@10.11.0(jiti@2.7.0)(supports-color@9.4.0))
       '@tupynambalucas-dev/agent-mesh':
-        specifier: github:tupynambalucas-dev/agent-mesh
+        specifier: catalog:plugins-stack
         version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b
       '@types/node':
         specifier: 'catalog:'
@@ -550,8 +554,6 @@ importers:
       prettier:
         specifier: catalog:tooling-stack
         version: 3.9.9
-
-  packages/academic-config: {}
 
   packages/preset:
     dependencies:
