@@ -1,45 +1,45 @@
 <context-hierarchy>
   <parent src="../AGENTS.md" type="global-rules" />
   <system-instruction>
-    AGENT: You are operating in the .agents bounded context. If you have not read "../AGENTS.md" in this session, stop now and read it using your file-reading tools before proceeding. Global constraints are mandatory.
+    AGENT: You are operating in the .agents bounded context of tupynambalucas-dev/docs. If you have not read ../AGENTS.md in this session, stop now and read it using your file-reading tools before proceeding. Global constraints are mandatory.
   </system-instruction>
 </context-hierarchy>
 
 # Bounded Context: .agents
 
-This bounded context ([.agents/](./)) manages the lifecycle, personas, tools, and domain-specific knowledge for AI agents operating within the repository. It strictly adheres to the Antigravity (AGY) customization architecture.
+This bounded context ([.agents/](./)) manages the lifecycle, personas, tools, and domain-specific knowledge for AI agents operating within the `docs` documentation portal monorepo. It strictly adheres to the Antigravity (AGY) customization architecture.
 
 ---
 
 ## 1. Directory Architecture
 
-- **[plans/](./plans/)**: Temporary, markdown-based execution plans for complex refactors.
-- **[plugins/](./plugins/)**: Bundled MCP (Model Context Protocol) definitions, server lifecycle configs, and associated rules (e.g., [plugins/workspace-mcps/](./plugins/workspace-mcps/)).
-- **[rules/](./rules/)**: Global or localized markdown constraints that are automatically injected into the agent's context based on location or trigger conditions.
-- **[scripts/](./scripts/)**: MUST be used ONLY for utility scripts (Node.js, Bash) that are executed by AI agents (both temporary and permanent). Human-operated scripts do not belong here.
+- **[plugins.json](./plugins.json)**: Antigravity plugin discovery manifest referencing the `@tupynambalucas-dev/agent-mesh` umbrella package (`node_modules/@tupynambalucas-dev/agent-mesh/plugins/packages`).
+- **[rules/](./rules/)**: Global or localized markdown constraints automatically injected into the agent's context based on location or trigger conditions.
+- **[scripts/](./scripts/)**: Utility scripts executed strictly by AI agents. Human-operated scripts do not belong here.
 - **[skills/](./skills/)**: Self-contained Markdown instruction files defining expert personas, validation workflows, and multi-step runbooks. Loaded on demand via progressive disclosure.
+- **[plans/](./plans/)**: Temporary, markdown-based execution plans for complex refactors.
 
 ---
 
-## 2. Agent Constraints
+## 2. Agent Constraints & Umbrella Consumption
 
-1. **Root Script Ban**: Agents MUST NEVER create temporary or utility scripts (e.g., `scratch.js`, `update.js`) directly in the monorepo root.
-2. **Script Location**: The [scripts/](./scripts/) directory is STRICTLY for scripts executed by AI agents (temporary or permanent). Agents MUST save their scripts here instead of the root directory. Transient scripts can optionally be saved in the agent's isolated `brain/scratch/` directory.
-3. **Cross-Boundary References**: Customizations inside [skills/](./skills/) or [plugins/](./plugins/) MUST be 100% self-contained. They MUST NOT contain relative links pointing to transient folders like [plans/](./plans/).
-4. **Plugin Encapsulation**: Any new MCP server integration MUST be encapsulated inside a named plugin directory within [plugins/](./plugins/) containing a `plugin.json` and `mcp_config.json`.
-5. **Concrete Nomenclature**: All contextual configurations MUST use concrete project names and identifiers appropriate to the host repository. Avoid introducing unresolved template placeholder tokens unless the host workspace explicitly utilizes an AST templating engine.
-6. **Environment Variables**: When generating or updating `.env.example` files, agents MUST replace all sensitive values with explicit uppercase placeholders matching the key name (e.g., `API_KEY=<YOUR_API_KEY>`). Agents MUST use native shell regex tools (e.g., `sed` or PowerShell `-replace`) to scrub these files and MUST NEVER use inline Node.js scripts parsing multiline strings, as cross-platform line-ending issues cause silent failures and secret leaks.
-7. **MCP Integrations**: Agents have access to workspace MCP tools (such as Firecrawl and Context7) configured via the [workspace-mcps](./plugins/workspace-mcps/) plugin to perform automated research, web scraping, and live documentation indexing.
+1. **Umbrella Package Consumption**: All organizational plugins are consumed via the `@tupynambalucas-dev/agent-mesh` umbrella package declared in [`pnpm-workspace.yaml`](../pnpm-workspace.yaml) under `catalogs.plugins-stack` and installed via the root [`package.json`](../package.json) `devDependencies` (`catalog:plugins-stack`).
+2. **Deterministic Discovery Path**: [`plugins.json`](./plugins.json) registers `node_modules/@tupynambalucas-dev/agent-mesh/plugins/packages`. Antigravity and Claude Code automatically discover all 10 domain plugins (`docusaurus`, `atelier`, `repo`, `research`, `secrets`, `web`, `github-flow`, `github-org`, `appsheet`, `gwork`).
+3. **Sovereign MCP Execution**: MCP servers run via self-contained entrypoints (`scripts/launcher.cjs` and `dist/bin.cjs`) with zero external dependency compilation required.
+4. **Root Script Ban**: Agents MUST NEVER create temporary or utility scripts directly in the monorepo root. Use `.agents/scripts/` or the isolated `brain/scratch/` directory.
+5. **Crowdin Localization Barrier**: NEVER edit files inside `i18n/` directly. All source documentation edits MUST occur strictly in the root English source directory (`docs/`). Localization is synchronized automatically via Crowdin actions.
 
 ---
 
 ## 3. Required Skills
 
-When authoring or modifying customizations within this bounded context, agents MUST activate the appropriate skill by name before beginning:
+When authoring or modifying customizations and documentation within this bounded context, agents MUST activate the appropriate skill by name before beginning:
 
-- **skill-expert**: When creating, updating, or analyzing custom Agent Skills in `skills/`.
-- **plugin-expert**: When creating, structuring, or updating Antigravity plugins in `plugins/`.
-- **markdown-expert**: When managing general repository documentation and README files.
+- **`docusaurus-architect`**: When designing taxonomies, Diátaxis quadrant structuring, and navigation hierarchy (`_category_.json`).
+- **`docusaurus-mdx-architect`**: When authoring or refactoring technical documents to ensure strict MDX v3 parser compliance.
+- **`docusaurus-auditor`**: When auditing documentation for broken links, syntax errors, or build issues.
+- **`router-architect`**: When updating `AGENTS.md` context routers.
+- **`readme-architect`**: When managing repository documentation and README files.
 
 ---
 
@@ -47,5 +47,10 @@ When authoring or modifying customizations within this bounded context, agents M
 
 When agents author technical documentation in the repository:
 
-1. **Diátaxis Framework**: Documentation intended for knowledge portals or documentation hubs SHOULD be structured into four quadrants (`tutorials`, `guides`, `reference`, `explanation`). Activate the `docusaurus-expert` skill when managing Docusaurus-based knowledge bases.
-2. **Documentation Formatting**: Follow strict Markdown/MDX formatting standards, avoiding broken links and preserving document structure. Activate the `markdown-expert` skill when managing general repository documentation.
+1. **Diátaxis Framework**: Every document MUST belong to exactly one of the four Diátaxis quadrants:
+   - `tutorials/`: Learning-oriented, step-by-step guidance for beginners.
+   - `how-to-guides/`: Problem-oriented, task-focused steps for accomplishing specific goals.
+   - `reference/`: Information-oriented, technical descriptions, schemas, APIs, and configurations.
+   - `explanation/`: Understanding-oriented, architectural rationale, background context, and design decisions.
+2. **MDX v3 Compatibility**: Self-closing HTML tags MUST include a trailing slash (`<br />`, `<hr />`, `<img ... />`). Code blocks MUST declare an explicit language identifier.
+3. **Zero-Emoji Policy**: Emojis are strictly forbidden across all markdown headers, admonitions, body text, and sidebar labels.

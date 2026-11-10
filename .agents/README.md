@@ -1,35 +1,54 @@
-# AI Agents Configuration Hub
+# AI Agents Configuration Hub (`.agents`)
 
-The `.agents/` directory is the Bounded Context for AI behavior customization, tool integration, and knowledge routing within Academic Lab.
+The `.agents/` directory is the Bounded Context for AI behavior customization, tool integration, and knowledge routing within the `docs` documentation portal monorepo.
 
-This directory is natively supported by the **Antigravity (AGY)** agent architecture and uses Domain-Driven Design (DDD) to encapsulate AI capabilities and constraints.
+---
 
-## Architecture
+## Architecture & Integration
 
-Our AI configuration is split into distinct logical units based on their lifecycle and injection behavior:
+Our AI agent configuration consumes sovereign domain plugins via the `@tupynambalucas-dev/agent-mesh` umbrella package:
 
-### `plugins/`
+### 1. Plugin Discovery Manifest (`plugins.json`)
 
-Namespaced bundles that package Skills, Rules, Hooks, and MCP Server Configurations into a single deployable unit. For example, the `workspace-mcps` plugin encapsulates local MCP servers (`firecrawl-mcp` and `context7-mcp`) alongside execution rules for live research, scraping, and documentation indexing.
+```json
+{
+  "entries": [
+    {
+      "path": "node_modules/@tupynambalucas-dev/agent-mesh/plugins/packages"
+    }
+  ]
+}
+```
 
-### `rules/`
+All 10 domain plugins (`docusaurus`, `atelier`, `repo`, `research`, `secrets`, `web`, `github-flow`, `github-org`, `appsheet`, `gwork`) and 8 sovereign MCP servers are discovered simultaneously via the single umbrella package entry.
 
-Guidelines and constraints that the AI must follow. These markdown files are automatically discovered and injected into the agent's context based on directory hierarchy or specific trigger conditions.
+### 2. Dependency Management
 
-### `skills/`
+The `@tupynambalucas-dev/agent-mesh` package is pinned via `plugins-stack` in [`pnpm-workspace.yaml`](../pnpm-workspace.yaml) and installed via the root [`package.json`](../package.json):
 
-On-demand, progressive-disclosure markdown files that teach the agent complex multi-step workflows, runbooks, and expert personas (e.g., `agent-router-expert`, `markdown-expert`, `docusaurus-expert`, `plugin-expert`, `skill-expert`). Skills are loaded into the context window on demand.
+```yaml
+catalogs:
+  plugins-stack:
+    '@tupynambalucas-dev/agent-mesh': 'github:tupynambalucas-dev/agent-mesh'
+```
 
-### `scripts/`
+### 3. Sovereign MCP Launchers
 
-Agent-authored utility scripts (Node.js, Bash, Python) meant for repository manipulation and version-controlled automation tasks.
+MCP servers bundled in `@tupynambalucas-dev/agent-mesh` execute via self-contained launchers (`scripts/launcher.cjs`) without requiring build steps or runtime dependency resolutions from the consumer project.
 
-### `plans/`
+---
 
-Temporary, markdown-based plan artifacts outlining execution steps for complex tasks and study roadmaps.
+## Directory Layout
 
-## Contribution Guidelines
+- [plugins.json](./plugins.json): Runtime plugin discovery manifest.
+- [AGENTS.md](./AGENTS.md): Bounded context router for `.agents/`.
+- [rules/](./rules/): Local rule definitions.
+- [skills/](./skills/): Local on-demand skills.
+- [scripts/](./scripts/): Agent utility scripts.
+- [plans/](./plans/): Refactoring and documentation plan artifacts.
 
-1. **Self-Contained Logic**: Skills and Plugins must be 100% self-contained. Do not create relative links pointing to temporary plans or other transient context.
-2. **Portability and Decoupling**: All skills, rules, and plugins must remain decoupled from machine-specific absolute paths.
-3. **No Root Scripts**: Never place utility or scratch scripts in the root directory. Save permanent scripts to `scripts/` or use the isolated `.gemini/brain/scratch/` directory for transient execution.
+---
+
+## Navigation
+
+- Parent Workspace: [Docs Portal Monorepo Root](../README.md)
