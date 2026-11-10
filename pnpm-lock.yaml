@@ -258,7 +258,7 @@ catalogs:
   plugins-stack:
     '@tupynambalucas-dev/agent-mesh':
       specifier: github:tupynambalucas-dev/agent-mesh
-      version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b
+      version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7
   shared-stack:
     dotenv:
       specifier: ^18.0.4
@@ -360,7 +360,7 @@ importers:
         version: 10.0.1(eslint@10.11.0(jiti@2.7.0)(supports-color@9.4.0))
       '@tupynambalucas-dev/agent-mesh':
         specifier: catalog:plugins-stack
-        version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b
+        version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.5
@@ -3267,9 +3267,9 @@ packages:
   '@tailwindcss/postcss@4.3.3':
     resolution: {integrity: sha512-JTSZZGQi1AyKirbLN3azmjVzef92tcX7h+iSqPdaeStyFpGpDlKvvpxeOE8njhbUanbRwr3z8DyzhICWnMtQeg==}
 
-  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b':
-    resolution: {gitHosted: true, integrity: sha512-7r7lrWZ8OP2jNkubvOHeyvvHlQ2NbV63ekkUdfPdyTk8XcsAptLSML75mBaFUahm3FGkd6VshPujO7rXaVLusA==, tarball: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b}
-    version: 1.0.0
+  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7':
+    resolution: {gitHosted: true, integrity: sha512-qMxzbop5dVO9NLkMdJ6wYJvBg1VIywoOtxkwW2uua1x8PBtWQZr9XaaWVhup1X1o1IIRc03xzjgHzpuCh0svVA==, tarball: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7}
+    version: 1.2.0
 
   '@turbo/darwin-64@2.11.5':
     resolution: {integrity: sha512-KdY4y7BBjIisl+jAkb3FFaRjClGqHyaeHCcVcCT8LBzFFwUu6thgfxyRZAx0uL4KoxLmH+iOan8UhVf/aDDcaA==}
@@ -5220,8 +5220,8 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
-  fast-uri@3.1.8:
-    resolution: {integrity: sha512-GZMtZUTNRpOVIECoXwLNZS5xUGE+mVNbTB8h/7Rwh2TFWcBQiPzTgyZi05BF9UMZKkLJv8XBRJTlU7zg8+ZfMg==}
+  fast-uri@3.1.9:
+    resolution: {integrity: sha512-hS/0Wt3Ya043oKXs0sIxrMpKQITXhMLIrVAKKXi4gozGC9v7YRWVnXIZzjNPTO02M9BdxLCWqK1yRXgNziVyJQ==}
 
   fastq@1.20.3:
     resolution: {integrity: sha512-XKv5nnLs6nLF71NgiKJLIZFLkPyIEuOselLG7ujZnGrRfQK8HpvY+WqKhAJUAdLomwVHErVS4LfxFlPq0/FTAw==}
@@ -11954,7 +11954,7 @@ snapshots:
       postcss: 8.5.30
       tailwindcss: 4.3.3
 
-  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/a4a7f36535ff5e81a4a32ab668205ee0c39ba16b': {}
+  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7': {}
 
   '@turbo/darwin-64@2.11.5':
     optional: true
@@ -12678,7 +12678,7 @@ snapshots:
   ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
-      fast-uri: 3.1.8
+      fast-uri: 3.1.9
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
@@ -14177,7 +14177,7 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
-  fast-uri@3.1.8: {}
+  fast-uri@3.1.9: {}
 
   fastq@1.20.3:
     dependencies:
