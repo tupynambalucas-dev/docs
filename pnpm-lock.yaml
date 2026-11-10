@@ -258,7 +258,7 @@ catalogs:
   plugins-stack:
     '@tupynambalucas-dev/agent-mesh':
       specifier: github:tupynambalucas-dev/agent-mesh
-      version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7
+      version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/99d45475c038eb9cde298879b7b601f48e1d9304
   shared-stack:
     dotenv:
       specifier: ^18.0.4
@@ -360,7 +360,7 @@ importers:
         version: 10.0.1(eslint@10.11.0(jiti@2.7.0)(supports-color@9.4.0))
       '@tupynambalucas-dev/agent-mesh':
         specifier: catalog:plugins-stack
-        version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7
+        version: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/99d45475c038eb9cde298879b7b601f48e1d9304
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.5
@@ -3267,8 +3267,8 @@ packages:
   '@tailwindcss/postcss@4.3.3':
     resolution: {integrity: sha512-JTSZZGQi1AyKirbLN3azmjVzef92tcX7h+iSqPdaeStyFpGpDlKvvpxeOE8njhbUanbRwr3z8DyzhICWnMtQeg==}
 
-  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7':
-    resolution: {gitHosted: true, integrity: sha512-qMxzbop5dVO9NLkMdJ6wYJvBg1VIywoOtxkwW2uua1x8PBtWQZr9XaaWVhup1X1o1IIRc03xzjgHzpuCh0svVA==, tarball: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7}
+  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/99d45475c038eb9cde298879b7b601f48e1d9304':
+    resolution: {gitHosted: true, integrity: sha512-1aGEk8O4vNeJ9iHLjEDl+B+Rs+A9Dba44OXBaGW7DaI9LGzlfSj0BC/pazYcoIqW4CtxpFcIRoRiB5TNh/Cieg==, tarball: https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/99d45475c038eb9cde298879b7b601f48e1d9304}
     version: 1.2.0
 
   '@turbo/darwin-64@2.11.5':
@@ -4063,8 +4063,8 @@ packages:
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
 
-  body-parser@1.20.8:
-    resolution: {integrity: sha512-JNcyFQ64OiijEkPzUBTCe+hyPXUD/3LEldGQ6iF5LR1w00mx9o7xtDWHXBY2iItjdCFGoilOLNQbH943ut7pHA==}
+  body-parser@1.20.9:
+    resolution: {integrity: sha512-FISIQxV5u91Y9gvuFq3q/tA/qTqLJn3AhRcEvyozyhJTh5OBFFtv827AdHU7Rbyct4r+Ba1/99oFa1Y3yuFsdw==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
 
   bonjour-service@1.4.4:
@@ -11954,7 +11954,7 @@ snapshots:
       postcss: 8.5.30
       tailwindcss: 4.3.3
 
-  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/3fd4543dff3fd7de1df2c00c278b14e285ea3fc7': {}
+  '@tupynambalucas-dev/agent-mesh@https://codeload.github.com/tupynambalucas-dev/agent-mesh/tar.gz/99d45475c038eb9cde298879b7b601f48e1d9304': {}
 
   '@turbo/darwin-64@2.11.5':
     optional: true
@@ -12817,7 +12817,7 @@ snapshots:
 
   blake3-wasm@2.1.5: {}
 
-  body-parser@1.20.8(supports-color@9.4.0):
+  body-parser@1.20.9(supports-color@9.4.0):
     dependencies:
       bytes: 3.1.2
       content-type: 1.0.5
@@ -14123,7 +14123,7 @@ snapshots:
     dependencies:
       accepts: 1.3.8
       array-flatten: 1.1.1
-      body-parser: 1.20.8(supports-color@9.4.0)
+      body-parser: 1.20.9(supports-color@9.4.0)
       content-disposition: 0.5.4
       content-type: 1.0.5
       cookie: 0.7.2
