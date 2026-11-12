@@ -42,11 +42,20 @@ This document serves as the root context router (Layer 1) for AI agents operatin
 - MUST use relative paths for all Markdown links. Absolute filesystem paths are strictly forbidden.
 - MUST format all files according to Prettier standards (2-space indent, max 100-character line width).
 
+## Architectural Plans & Artifact Dual-Storage Standard
+
+Architectural blueprints, technical analyses, and master plans follow strict enterprise storage standards:
+- **Storage Location**: Blueprints, analyses, and reports reside in `plans/<artifact-slug>/` (or `plans/<artifact-slug>.md`), with `.agents/plans/<artifact-slug>/` fully recognized for backward compatibility.
+- **Topologies**: Topology 1 (Single-File Artifact) for atomic refactors, analyses, and reports; Topology 2 (Multi-Artifact Suite) for multi-domain frameworks with master `README.md` and numbered domain documents.
+- **Dual-Storage Invariant**: Whenever an agent creates an architectural plan, analysis, or report artifact in the Antigravity conversation directory (`<appDataDir>/brain/<conversation-id>/`), an identical synchronized copy MUST ALWAYS be mirrored in `plans/<artifact-slug>/` (or `plans/<artifact-slug>.md`).
+- **Ignore & Index Triad**: All repositories ignore `plans/` and `.agents/plans/` in `.gitignore`, while explicitly un-ignoring them in `.ignore` and `.rgignore` (`!plans/`, `!plans/**`, `!.agents/plans/`, `!.agents/plans/**`) and setting `"search.useIgnoreFiles": false` in `.vscode/settings.json` so files can always be attached with `@`.
+
 ## Required Skills
 
 When authoring or updating documentation in this repository, agents MUST activate the appropriate
 skill by name before proceeding:
 
+- **`plan-architect`**: Active when designing, structuring, authoring, or auditing architectural plans, technical analyses, and governance reports following the dual-storage standard.
 - **`agent-router-expert`**: Active when creating or reviewing any AGENTS.md file in the repository.
 - **`markdown-expert`**: Active when creating, updating, or reviewing any README.md or general Markdown.
 - **`docusaurus-architect, docusaurus-mdx-architect, docusaurus-auditor`**: Active when authoring MDX documentation, managing collections, or configuring
