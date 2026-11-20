@@ -1,21 +1,26 @@
 # Changelog
 
-All updates, improvements, and new features of tupynambalucas.dev documented in the Knowledge Base.
+All notable changes to the `docs` sovereign technical documentation hub will be documented in this file.
 
-## Release - v1.0.0 (2026-10-03)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Welcome to the first official major release of %PROJECT_DOMAIN% (`v1.0.0`)! This update establishes our core architecture, localization infrastructure, and unifies our content strategy.
+<!-- changelog-start -->
 
-{/* truncate */}
+## [1.0.0] - 2026-10-03
 
-### Highlights
+Welcome to the first official major release of the documentation hub (`v1.0.0`)! This update establishes our core architecture, localization infrastructure, and unifies our content strategy.
 
-- **Unified Content Architecture**: We have officially merged the Changelog and the Blog into a single chronological timeline. All releases, updates, and regular posts are now accessed in one unified view.
-- **Enterprise Localization Pipeline**:
-  - Restructured our translation strategy, extracting Docusaurus React UI strings into a dedicated, enterprise-standard `messages/` folder.
-  - Deployed a unified plugin to automatically unpack Crowdin translations directly into the Docusaurus native locale structure.
-  - Successfully mapped Crowdin properties for Docusaurus JSON (`type: chrome`), preventing translators from modifying system keys.
-  - Completed the first full wave of Portuguese (pt-BR) localization covering Brand Principles, Design Tokens, Cloudflare Storage, and the entire Knowledge Base Overview.
-- **GitOps and Automation**: Hardened our `.github/` workflows for synchronized translation deployment and architecture-as-code principles.
+### Features & Capabilities
+- [FEAT] (content): unify content architecture, merging changelog and blog into a single chronological timeline.
+- [FEAT] (localization): enterprise localization pipeline extracting Docusaurus React UI strings into `messages/` folder.
+- [FEAT] (i18n): deploy unified plugin to automatically unpack Crowdin translations directly into native locale structure.
+- [FEAT] (translations): complete first wave of Portuguese (pt-BR) localization covering brand principles, tokens, and storage.
 
-We are ready to scale!
+### Refactoring & Internal Architecture
+- [REFACTOR] (crowdin): map Crowdin properties for Docusaurus JSON (`type: chrome`), preventing translators from modifying system keys.
+
+### Continuous Integration & Automation
+- [CI] (gitops): harden `.github/` workflows for synchronized translation deployment and architecture-as-code principles.
+
+[1.0.0]: https://github.com/tupynambalucas-dev/docs/releases/tag/v1.0.0
