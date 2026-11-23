@@ -89,7 +89,7 @@ Continuous deployment to Cloudflare Pages and automated localization synchroniza
 
 ### Execution Modes
 
-- **Meta-Repository Mode (`org-core`)**: When developing inside `org-core`, secrets cascade from the umbrella environment or root Infisical session.
+- **Meta-Repository Mode (`org`)**: When developing inside `org`, secrets cascade from the umbrella environment or root Infisical session.
 - **Standalone Workspace Mode (`docs`)**: Execute commands with project-scoped Infisical credentials:
   ```bash
   infisical run --projectId <DOCS_PROJECT_ID> --env dev -- pnpm portal:dev
