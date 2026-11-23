@@ -24,7 +24,7 @@
     "generate:roadmap": "tsx tooling/generate-roadmap.ts",
     "kb:docusaurus:portal:generate:changelog": "tsx tooling/generate-changelog.ts",
     "kb:docusaurus:portal:generate:roadmap": "tsx tooling/generate-roadmap.ts",
-    "typecheck": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint ."
   },
   "dependencies": {
